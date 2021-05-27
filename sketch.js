@@ -55,8 +55,16 @@ function draw() {
 }
 
 function keyPressed() {
-  if ((keyCode == 32) && player.alive) {
-    if (first) {first = false;}
-    player.jump();
+  if (keyCode == 32) {
+    if (player.alive) {
+      if (first) {first = false;}
+      player.jump();
+    } else {
+      first = true;
+      player = new Player();
+      pipes = [];
+      frames = 1;
+      score = 0;
+    }
   }
 }
