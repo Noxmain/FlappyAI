@@ -1,8 +1,8 @@
 function Player() {
+  this.size = 20;
   this.x = 100;
   this.y = 300;
   this.s = 0;
-  this.size = 20;
   this.gravity = 0.8;
   this.alive = true;
 
@@ -17,7 +17,7 @@ function Player() {
   };
 
   this.jump = function() {
-    this.s = -15;
+    this.s = -12;
   };
 
   this.draw = function() {
