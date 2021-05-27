@@ -17,9 +17,9 @@ function Player() {
       }
     }
 
-    if (this.y > height - this.size / 2) {
+    if (this.y > height - 48 - this.size / 2) {
       this.alive = false;
-      this.y = height - this.size / 2;
+      this.y = height - 48 - this.size / 2;
     }
   };
 
@@ -28,8 +28,11 @@ function Player() {
   };
 
   this.draw = function() {
-    noStroke();
-    fill(5);
-    ellipse(this.x, this.y, this.size);
+    image(assets[0], this.x - assets[0].width / 2, this.y - assets[0].height / 2);
+    if (HITBOXES) {
+      stroke(255, 0, 0);
+      noFill();
+      ellipse(this.x, this.y, this.size);
+    }
   };
 }

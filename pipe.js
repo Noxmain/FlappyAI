@@ -1,9 +1,9 @@
 function Pipe() {
-  this.width = 100;
-  this.gap_height = 200;
+  this.width = 104;
+  this.gap_height = 190;
   this.x = width + this.width;
   this.y = random(100, height - (100 + this.gap_height));
-  this.s = 2;
+  this.s = 3;
 
   this.update = function() {
     this.x -= this.s;
@@ -14,9 +14,13 @@ function Pipe() {
   };
 
   this.draw = function() {
-    noStroke();
-    fill(5);
-    rect(this.x, 0, this.width, this.y);
-    rect(this.x, this.y + this.gap_height, this.width, height);
+    image(assets[1], this.x, this.y - assets[1].height);
+    image(assets[2], this.x, this.y + this.gap_height);
+    if (HITBOXES) {
+      stroke(0, 0, 255);
+      noFill();
+      rect(this.x, 0, this.width, this.y);
+      rect(this.x, this.y + this.gap_height, this.width, height);
+    }
   };
 }
