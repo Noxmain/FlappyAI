@@ -7,7 +7,9 @@ function Pipe() {
 
   this.update = function() {
     this.x -= this.s;
+  };
 
+  this.check = function() {
     if (this.x < 0 - this.width) {
       pipes.splice(pipes.indexOf(this), 1);
     }

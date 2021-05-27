@@ -35,10 +35,11 @@ function draw() {
     if (player.alive) {pipes[i].update();}
     pipes[i].draw();
   }
+  for (i in pipes) {pipes[i].check();}
 
-  for (var j in grounds) {
-    if (player.alive) {grounds[j].update();}
-    grounds[j].draw();
+  for (i in grounds) {
+    if (player.alive) {grounds[i].update();}
+    grounds[i].draw();
   }
 
   if (!first) {
