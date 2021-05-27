@@ -4,7 +4,7 @@ var frames = 1;
 
 function setup() {
   createCanvas(480, 640);
-
+  title = new Title();
   player = new Player();
 }
 
@@ -14,6 +14,8 @@ function draw() {
   if (!first) {
     player.update();
     frames++;
+  } else {
+    title.draw();
   }
   player.draw();
 
