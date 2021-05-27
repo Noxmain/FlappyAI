@@ -1,5 +1,6 @@
 var first = true;
 var pipes = [];
+var frames = 1;
 
 function setup() {
   createCanvas(480, 640);
@@ -12,15 +13,14 @@ function draw() {
 
   if (!first) {
     player.update();
+    frames++;
   }
   player.draw();
 
-  if (frameCount % 300 == 0) {
-    pipes.push(new Pipe());
-  }
+  if (frames % 200 == 0) {pipes.push(new Pipe());}
 
   for (var i in pipes) {
-    pipes[i].update();
+    if (player.alive) {pipes[i].update();}
     pipes[i].draw();
   }
 }
