@@ -4,9 +4,14 @@ function Pipe() {
   this.x = width + this.width;
   this.y = random(100, height - (100 + this.gap_height));
   this.s = 3;
+  this.scored = false;
 
   this.update = function() {
     this.x -= this.s;
+    if ((!this.scored) && (this.x + this.width / 2 < 100)) {
+      this.scored = true;
+      score++;
+    }
   };
 
   this.check = function() {

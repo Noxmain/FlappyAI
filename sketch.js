@@ -3,6 +3,7 @@ var first = true;
 var pipes = [];
 var grounds = [];
 var frames = 1;
+var score = 0;
 
 var HITBOXES = false;
 
@@ -15,6 +16,7 @@ function preload() {
   assets[1] = loadImage("assets/pipe_top.png");
   assets[2] = loadImage("assets/pipe_bottom.png");
   assets[3] = loadImage("assets/ground.png");
+  assets[4] = loadFont("assets/font.ttf");
 }
 
 function setup() {
@@ -42,11 +44,13 @@ function draw() {
     grounds[i].draw();
   }
 
-  if (!first) {
-    player.update();
+  if (first) {
+    title.draw("FLAPPY", 35);
   } else {
-    title.draw();
+    title.draw(score.toString().replace("0", "O"), width / 2 - score.toString().length * 34);
   }
+
+  if (!first) {player.update();}
   player.draw();
 }
 
