@@ -1,7 +1,7 @@
 var first = true;
 
 function setup() {
-  createCanvas(400, 600);
+  createCanvas(480, 640);
 
   player = new Player();
 }

@@ -1,9 +1,9 @@
 function Player() {
   this.x = 100;
-  this.y = 280;
+  this.y = 300;
   this.s = 0;
   this.size = 20;
-  this.gravity = 0.5;
+  this.gravity = 0.8;
   this.alive = true;
 
   this.update = function() {
@@ -14,14 +14,10 @@ function Player() {
       this.alive = false;
       this.y = height - this.size / 2;
     }
-
-    if (this.y < 0) {
-      this.alive = false;
-    }
   };
 
   this.jump = function() {
-    this.s = -10;
+    this.s = -15;
   };
 
   this.draw = function() {
