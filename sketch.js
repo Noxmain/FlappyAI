@@ -2,6 +2,10 @@ var first = true;
 var pipes = [];
 var frames = 1;
 
+function pythagoras(a, b) {
+  return Math.sqrt(a * a + b * b);
+}
+
 function setup() {
   createCanvas(480, 640);
   title = new Title();

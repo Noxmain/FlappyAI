@@ -1,5 +1,5 @@
 function Player() {
-  this.size = 20;
+  this.size = 40;
   this.x = 100;
   this.y = 300;
   this.s = 0;
@@ -9,6 +9,13 @@ function Player() {
   this.update = function() {
     this.y += this.s;
     this.s += this.gravity;
+
+    for (var i in pipes) {
+      pipe = pipes[i];
+      if ((this.x + this.size / 2 > pipe.x) && (this.x - this.size / 2 < pipe.x + pipe.width)) {
+        if ((this.y - this.size / 2 < pipe.y) || (this.y + this.size / 2 > pipe.y + pipe.gap_height)) {this.alive = false;}
+      }
+    }
 
     if (this.y > height - this.size / 2) {
       this.alive = false;

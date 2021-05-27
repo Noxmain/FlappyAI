@@ -1,8 +1,8 @@
 function Pipe() {
   this.width = 100;
-  this.gap_height = 120;
+  this.gap_height = 200;
   this.x = width + this.width;
-  this.y = random(100 + this.gap_height / 2, height - (100 + this.gap_height / 2));
+  this.y = random(100, height - (100 + this.gap_height));
   this.s = 2;
 
   this.update = function() {
@@ -16,6 +16,7 @@ function Pipe() {
   this.draw = function() {
     noStroke();
     fill(5);
-    rect(this.x, this.y, this.width, this.gap_height);
+    rect(this.x, 0, this.width, this.y);
+    rect(this.x, this.y + this.gap_height, this.width, height);
   };
 }
