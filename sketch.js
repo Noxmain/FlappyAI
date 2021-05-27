@@ -59,7 +59,7 @@ function keyPressed() {
     if (player.alive) {
       if (first) {first = false;}
       player.jump();
-    } else {
+    } else if (player.y + player.size > height - 50) {
       first = true;
       player = new Player();
       pipes = [];
