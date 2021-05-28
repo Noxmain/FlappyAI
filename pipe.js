@@ -10,7 +10,7 @@ function Pipe() {
     this.x -= this.s;
     if ((!this.scored) && (this.x + this.width < 100)) {
       this.scored = true;
-      score++;
+      for (var i in players) {if (players[i].alive) {players[i].score++;}}
     }
   };
 

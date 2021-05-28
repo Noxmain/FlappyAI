@@ -1,12 +1,16 @@
 function Player() {
   this.size = 40;
-  this.x = 100;
-  this.y = 300;
-  this.s = 0;
   this.gravity = 0.8;
-  this.alive = true;
-  this.score = 0;
   this.brain = new Brain();
+
+  this.reset = function() {
+    this.x = 100;
+    this.y = 300;
+    this.s = 0;
+    this.alive = true;
+    this.score = 0;
+  };
+  this.reset();
 
   this.act = function() {
     var p, pp, ps, pd, pt, pb;
@@ -21,6 +25,7 @@ function Player() {
   };
 
   this.update = function() {
+    if (!this.alive) {this.x -= 3;}
     this.y += this.s;
     this.s += this.gravity;
 

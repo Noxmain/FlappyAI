@@ -6,7 +6,7 @@
 
 function Brain(weights) {
   if (weights == undefined) {
-    this.weights = [random(), random(), random(), random(), random()];
+    this.weights = [random(-1, 1), random(-1, 1), random(-1, 1), random(-1, 1), random(-1, 1)];
   } else {
     this.weights = weights;
   }
@@ -18,6 +18,21 @@ function Brain(weights) {
   };
 
   this.mutate = function(rate) {
+    for (var i in this.weights) {
+      this.weights[i] = random(this.weights[i] - rate, this.weights[i] + rate);
+    }
+  };
 
+  this.draw = function() {
+    for (var i in this.weights) {
+      if (this.weights[i] > 0) {stroke(255, 0, 0);} else {stroke(0, 0, 255);}
+      strokeWeight(map(abs(this.weights[i]), 0, 1, 0, 3));
+      line(width - 100, (height - 150) + Number(i) * 30, width - 30, height - 90);
+    }
+    stroke(0);
+    strokeWeight(2);
+    fill(255);
+    for (i = 0; i < 5; i++) {ellipse(width - 100, (height - 150) + Number(i) * 30, 20);}
+    ellipse(width - 30, height - 90, 20);
   };
 }
