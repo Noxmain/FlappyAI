@@ -31,7 +31,7 @@ function draw() {
   if (!first) {frames++;}
   if (frames % 100 == 0) {pipes.push(new Pipe());}
 
-  background(132, 195, 204);
+  background(128, 186, 197);
 
   for (var i in pipes) {
     if (player.alive) {pipes[i].update();}

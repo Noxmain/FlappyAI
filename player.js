@@ -31,6 +31,7 @@ function Player() {
     image(assets[0], this.x - assets[0].width / 2, this.y - assets[0].height / 2);
     if (HITBOXES) {
       stroke(255, 0, 0);
+      strokeWeight(1);
       noFill();
       ellipse(this.x, this.y, this.size);
     }

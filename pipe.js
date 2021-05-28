@@ -25,6 +25,7 @@ function Pipe() {
     image(assets[2], this.x, this.y + this.gap_height);
     if (HITBOXES) {
       stroke(0, 0, 255);
+      strokeWeight(1);
       noFill();
       rect(this.x, 0, this.width, this.y);
       rect(this.x, this.y + this.gap_height, this.width, height);

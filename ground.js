@@ -15,6 +15,7 @@ function Ground(x) {
     image(assets[3], this.x, this.y);
     if (HITBOXES) {
       stroke(0, 255, 0);
+      strokeWeight(1);
       noFill();
       rect(0, height - 48, width, height);
     }
