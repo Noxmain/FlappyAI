@@ -5,6 +5,20 @@ function Player() {
   this.s = 0;
   this.gravity = 0.8;
   this.alive = true;
+  this.score = 0;
+  this.brain = new Brain();
+
+  this.act = function() {
+    var p, pp, ps, pd, pt, pb;
+    for (p in pipes) {if (!p.scored) {break;}}
+    p = pipes[p];
+    pp = map(this.y, 0, height, -1, 1);
+    ps = map(this.s, -20, 20, -1, 1);
+    if (p == undefined) {pd = 1;} else {pd = map(p.x - (this.x + this.size), -width, width, -1, 1);}
+    if (p == undefined) {pt = 1;} else {pt = map(this.y - p.y, -height, height, -1, 1);}
+    if (p == undefined) {pb = 1;} else {pb = map((p.y + p.gap_height) - (this.y + this.size), -height, height, -1, 1);}
+    if (this.brain.query([pp, ps, pd, pt, pb])) {this.jump();}
+  };
 
   this.update = function() {
     this.y += this.s;

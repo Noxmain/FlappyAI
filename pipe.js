@@ -8,7 +8,7 @@ function Pipe() {
 
   this.update = function() {
     this.x -= this.s;
-    if ((!this.scored) && (this.x + this.width / 2 < 100)) {
+    if ((!this.scored) && (this.x + this.width < 100)) {
       this.scored = true;
       score++;
     }

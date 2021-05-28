@@ -3,7 +3,7 @@ var first = true;
 var pipes = [];
 var grounds = [];
 var frames = 1;
-var score = 0;
+var speed = 1;
 
 var HITBOXES = false;
 
@@ -28,43 +28,37 @@ function setup() {
 }
 
 function draw() {
-  if (!first) {frames++;}
-  if (frames % 100 == 0) {pipes.push(new Pipe());}
+  for (var _ = 0; _ < speed; _++) {
+    if (!first) {frames++;}
+    if (frames % 100 == 0) {pipes.push(new Pipe());}
 
-  background(128, 186, 197);
+    background(128, 186, 197);
 
-  for (var i in pipes) {
-    if (player.alive) {pipes[i].update();}
-    pipes[i].draw();
+    for (var i in pipes) {
+      if (player.alive) {pipes[i].update();}
+      pipes[i].draw();
+    }
+    for (i in pipes) {pipes[i].check();}
+
+    for (i in grounds) {
+      if (player.alive) {grounds[i].update();}
+      grounds[i].draw();
+    }
+
+    if (first) {
+      title.draw("FLAPPY AI", 35);
+    } else {
+      title.draw(speed.toString().replace("0", "O"), width / 2 - speed.toString().length * 34);
+    }
+
+    if (player.alive) {player.act();}
+    if (!first) {player.update();}
+    player.draw();
   }
-  for (i in pipes) {pipes[i].check();}
-
-  for (i in grounds) {
-    if (player.alive) {grounds[i].update();}
-    grounds[i].draw();
-  }
-
-  if (first) {
-    title.draw("FLAPPY", 35);
-  } else {
-    title.draw(score.toString().replace("0", "O"), width / 2 - score.toString().length * 34);
-  }
-
-  if (!first) {player.update();}
-  player.draw();
 }
 
 function keyPressed() {
-  if (keyCode == 32) {
-    if (player.alive) {
-      if (first) {first = false;}
-      player.jump();
-    } else if (player.y + player.size > height - 50) {
-      first = true;
-      player = new Player();
-      pipes = [];
-      frames = 1;
-      score = 0;
-    }
-  }
+  if ((key == " ") && first) {first = false;}
+  if ((key == "+") && (speed < 1000)) {speed *= 10;}
+  if ((key == "-") && (speed > 1)) {speed /= 10;}
 }
