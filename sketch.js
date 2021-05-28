@@ -1,6 +1,6 @@
 var assets = [];
-var pipes = [];
 var grounds = [];
+var pipes = [];
 var frames = 1;
 var speed = 1;
 
@@ -20,7 +20,7 @@ function preload() {
 
 function setup() {
   createCanvas(480, 640);
-  population = new Population(100);
+  population = new Population(500);
   grounds.push(new Ground(0));
   grounds.push(new Ground(width));
 }
