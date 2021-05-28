@@ -10,7 +10,7 @@ function Pipe() {
     this.x -= this.s;
     if ((!this.scored) && (this.x + this.width / 2 < 100)) {
       this.scored = true;
-      score++;
+      population.increase_score();
     }
   };
 

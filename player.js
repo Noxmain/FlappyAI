@@ -5,8 +5,17 @@ function Player() {
   this.s = 0;
   this.gravity = 0.8;
   this.alive = true;
+  this.score = 0;
+  this.brain = new Brain();
+
+  this.act = function() {
+    if (this.alive) {
+      if (this.brain.query()) {this.jump();}
+    }
+  };
 
   this.update = function() {
+    if (!this.alive) {this.x -= 3;}
     this.y += this.s;
     this.s += this.gravity;
 

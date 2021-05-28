@@ -1,9 +1,8 @@
 var assets = [];
-var first = true;
 var pipes = [];
 var grounds = [];
 var frames = 1;
-var score = 0;
+var speed = 1;
 
 var HITBOXES = false;
 
@@ -21,49 +20,37 @@ function preload() {
 
 function setup() {
   createCanvas(480, 640);
-  player = new Player();
+  population = new Population(100);
   grounds.push(new Ground(0));
   grounds.push(new Ground(width));
 }
 
 function draw() {
-  if (!first) {frames++;}
-  if (frames % 100 == 0) {pipes.push(new Pipe());}
+  for (var _ = 0; _ < speed; _++) {
+    frames++;
+    if (frames % 100 == 0) {pipes.push(new Pipe());}
 
-  background(128, 186, 197);
+    background(128, 186, 197);
 
-  for (var i in pipes) {
-    if (player.alive) {pipes[i].update();}
-    pipes[i].draw();
+    for (var i in pipes) {
+      pipes[i].update();
+      pipes[i].draw();
+    }
+    for (i in pipes) {pipes[i].check();}
+
+    for (i in grounds) {
+      grounds[i].update();
+      grounds[i].draw();
+    }
+
+    Text(population.best_score().toString().replace("0", "O"), width / 2 - population.best_score().toString().length * 34, 120, 52);
+
+    population.update();
+    population.draw();
   }
-  for (i in pipes) {pipes[i].check();}
-
-  for (i in grounds) {
-    if (player.alive) {grounds[i].update();}
-    grounds[i].draw();
-  }
-
-  if (first) {
-    Text("FLAPPY AI", 35, 120, 52);
-  } else {
-    Text(score.toString().replace("0", "O"), width / 2 - score.toString().length * 34, 120, 52);
-  }
-
-  if (!first) {player.update();}
-  player.draw();
 }
 
 function keyPressed() {
-  if (keyCode == 32) {
-    if (player.alive) {
-      if (first) {first = false;}
-      player.jump();
-    } else if (player.y + player.size > height - 50) {
-      first = true;
-      player = new Player();
-      pipes = [];
-      frames = 1;
-      score = 0;
-    }
-  }
+  if (key == "+") {speed *= 2;}
+  if (key == "-") {speed = max(speed / 2, 1);}
 }
