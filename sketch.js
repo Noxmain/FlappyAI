@@ -22,7 +22,6 @@ function preload() {
 function setup() {
   createCanvas(480, 640);
   player = new Player();
-  title = new Title();
   grounds.push(new Ground(0));
   grounds.push(new Ground(width));
 }
@@ -45,9 +44,9 @@ function draw() {
   }
 
   if (first) {
-    title.draw("FLAPPY", 35);
+    Text("FLAPPY AI", 35, 120, 52);
   } else {
-    title.draw(score.toString().replace("0", "O"), width / 2 - score.toString().length * 34);
+    Text(score.toString().replace("0", "O"), width / 2 - score.toString().length * 34, 120, 52);
   }
 
   if (!first) {player.update();}
